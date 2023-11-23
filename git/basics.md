@@ -27,6 +27,7 @@ git pull --all
 ```
 
 ## Push to two (or more) remote repos
+Note that you will need to add both remotes, even if one is already defined for push:
 ```commandline
 git remote set-url --add --push origin git@gitlab.com:mickelonius/references.git
 git remote set-url --add --push origin git@github.com:mickelonius/refs.git
