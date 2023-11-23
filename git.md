@@ -25,3 +25,14 @@ git branch -r | grep -v '\->' | sed "s,\x1B\[[0-9;]*[a-zA-Z],,g" | while read re
 git fetch --all
 git pull --all
 ```
+
+## Push to two (or more) remote repos
+```commandline
+git remote set-url --add --push origin git@gitlab.com:mickelonius/references.git
+git remote set-url --add --push origin git@github.com:mickelonius/refs.git
+
+git remote -v
+origin  git@github.com:mickelonius/refs.git (fetch)
+origin  git@gitlab.com:mickelonius/references.git (push)
+origin  git@github.com:mickelonius/refs.git (push)
+```
