@@ -1,11 +1,10 @@
+Namecheap requires the SSL certs be re-issued every year
+This requires generating CSR that contains the appropriate domain
+Currently, we have
+ * `*.mickelonius.com`
+ * `mickelonius-analytics.com`
+
 ```bash
-
-# Namecheap requires the SSL certs be re-issued every year
-# This requires generating CSR that contains the appropriate domain
-# Currently, we have
-# *.mickelonius.com
-# mickelonius-analytics.com
-
 # Generate key
 sudo openssl genrsa -out private.key 2048
 # or
