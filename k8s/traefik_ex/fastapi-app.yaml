@@ -1,0 +1,68 @@
+# kubernetes-fastapi LoadBalancer Service
+# Enables the pods in a deployment to be accessible from outside the cluster
+apiVersion: v1
+kind: Service
+metadata:
+  name: fastapi-app-v1
+  namespace: app
+  labels:
+    app: fastapi-app-v1
+spec:
+  type: ClusterIP
+  ports:
+  - port: 80
+    name: fastapi-app-v1
+  selector:
+    app: fastapi-app-v1
+
+---
+# kf-api Deployment
+# Defines the deployment of the app running in a pod on any worker node
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fastapi-app-v1
+  namespace: app
+  labels:
+    app: fastapi-app-v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fastapi-app-v1
+  template:
+    metadata:
+      labels:
+        app: fastapi-app-v1
+    spec:
+      containers:
+        - name: fastapi-app-v1
+          image: mickelonius/kubernetes-fastapi:1.0.0
+          ports:
+            - containerPort: 80
+          imagePullPolicy: Always
+          resources:
+            # You must specify requests for CPU to autoscale
+            # based on CPU utilization
+            requests:
+              cpu: "250m"
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: fastapi-app-tls
+  namespace: app
+spec:
+  entryPoints:
+    - websecure     # Defined in Deployment container spec ports
+  routes:
+    - kind: Rule
+      match: PathPrefix(`/api/v1`) || PathPrefix(`/docs`) || PathPrefix(`/openapi.json`) || PathPrefix(`/ping`)
+      priority: 6
+      services:
+        - name: fastapi-app-v1
+          port: 80
+  tls:
+    secretName: mickelonius-tls
+    domains:
+      - main: mickelonius.com
