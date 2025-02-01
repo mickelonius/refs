@@ -1,3 +1,24 @@
+## Setup
+```commandline
+git config --local user.name "Mike Lee"
+git config --local user.email "m.derek.lee@gmail.com"
+
+git remote add origin git@github.com:mickelonius/refs.git
+git remote set-url --add --push origin git@gitlab.com:mickelonius/references.git
+git remote -v
+```
+should get
+```
+origin  git@github.com:mickelonius/refs.git (fetch)
+origin  git@github.com:mickelonius/refs.git (push)
+origin  git@gitlab.com:mickelonius/references.git (push)
+```
+then
+```commandline
+git branch -M main
+git push -u origin main
+```
+
 ## How to prune git commit tree
 ```commandline
 git reset --hard <CommitId>

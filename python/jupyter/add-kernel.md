@@ -8,5 +8,5 @@ jupyter kernelspec list
 ```
 
 ```
-jupyter kernelspec uninstall kernel_name
+jupyter kernelspec uninstall <kernel_name>
 ```
