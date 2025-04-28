@@ -1,0 +1,44 @@
+{
+    "$id": "https://catz.org/schema/api/data/catRequest.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "CatRequest",
+    "description": "Cat API request definition.",
+    "type": "object",
+    "definitions": {
+      "address": {
+        "description": "Defines the city, code and number.",
+        "type": "object",
+        "properties": {
+            "city": {
+                "description": "Cat's city",
+                "type": "string"
+            },
+            "zip_code": {
+                "description": "Postal code",
+                "type": "string"
+            },
+            "number": {
+                "description": "House number",
+                "type": "integer"
+            }
+        },
+        "additionalProperties": false
+      }
+    },
+    "properties": {
+      "name": {
+        "description": "Cat's name.",
+        "type": "string"
+      },
+      "age": {
+        "description": "Cat's age, in cat years.",
+        "type": "integer"
+      },
+      "address": {
+        "description": "Where does the cat live.",
+        "$ref": "#/definitions/address"
+      }
+    },
+    "required": ["name"],
+    "additionalProperties": false
+}

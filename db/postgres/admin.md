@@ -1,4 +1,21 @@
 # Basic admin
+## Recover password
+```commandline
+# Switch to the postgres system user (not just use sudo):
+sudo -i -u postgres
+
+# Connect as postgres user (locally)
+psql
+> \password postgres
+> \q
+
+# Make sure user can access from ip w/ pswd
+sudo -u postgres psql -c "SHOW hba_file;"
+
+# Edit file
+# local all postgres md5
+```
+## System/Service (Re)start
 **Linux:**
 If PostgreSQL is installed as a systemd service, you can manage it as follows:
 
