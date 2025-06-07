@@ -115,7 +115,7 @@ optimal policy becomes stable, we can run policy evaluation for one iteration an
 that to feed to policy improvment every step.
 
 In fact, with this method, we don't even need to deal with policies at all,
-we just iterate the _V_ and policyless _Q_ functions to get the optimal set of actions per state:
+we just iterate the _V_ and _Q_ functions to get the optimal set of actions per state:
 
 $$
 \begin{align}
